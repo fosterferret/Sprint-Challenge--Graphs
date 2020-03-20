@@ -44,8 +44,8 @@ for i in range(700):
 
     generated_paths.append(traversal_graph.traversal_path)
 
-shortest_path = generated_paths[0]
 shortest_length = len(generated_paths[0])
+shortest_path = generated_paths[0]
 for path in generated_paths:
     if len(path) < shortest_length:
         shortest_path = path

@@ -55,16 +55,16 @@ class Graph():
         self.add_room(new_room.id, new_room.get_exits())
         self.add_connection(previous_room.id, new_room.id, direction)
 
-        prev_coordinates = self.get_coordinates(previous_room.id)
+        old_coordinates = self.get_coordinates(previous_room.id)
 
         if direction == 'n':
-            new_coordinates = (prev_coordinates[0], prev_coordinates[1] + 1)
+            new_coordinates = (old_coordinates[0], old_coordinates[1] + 1)
         if direction == 's':
-            new_coordinates = (prev_coordinates[0], prev_coordinates[1] - 1)
+            new_coordinates = (old_coordinates[0], old_coordinates[1] - 1)
         if direction == 'w':
-            new_coordinates = (prev_coordinates[0] - 1, prev_coordinates[1])
+            new_coordinates = (old_coordinates[0] - 1, old_coordinates[1])
         if direction == 'e':
-            new_coordinates = (prev_coordinates[0] + 1, prev_coordinates[1])
+            new_coordinates = (old_coordinates[0] + 1, old_coordinates[1])
 
         self.rooms[new_room.id][1] = new_coordinates
         self.check_coordinates()
@@ -99,7 +99,7 @@ class Graph():
                 self.dft_recursive(new_room, completed)
             else:
                 completed.add(starting_room)
-    
+
     def bfs(self, starting_room=None):
         starting_room = starting_room or self.player.current_room
         queue = Queue()
